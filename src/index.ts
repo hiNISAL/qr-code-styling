@@ -7,6 +7,7 @@ import errorCorrectionPercents from "./constants/errorCorrectionPercents";
 import modes from "./constants/modes";
 import qrTypes from "./constants/qrTypes";
 import drawTypes from "./constants/drawTypes";
+import qrcode from "qrcode-generator";
 
 export * from "./types";
 
@@ -18,7 +19,8 @@ export {
   errorCorrectionPercents,
   modes,
   qrTypes,
-  drawTypes
+  drawTypes,
+  qrcode
 };
 
 export default QRCodeStyling;

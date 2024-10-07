@@ -11,6 +11,8 @@ import { Extension, QRCode, Options, DownloadOptions } from "../types";
 import qrcode from "qrcode-generator";
 
 export default class QRCodeStyling {
+  static qrcodeGenerator = qrcode;
+
   _options: RequiredOptions;
   _container?: HTMLElement;
   _canvas?: QRCanvas;
