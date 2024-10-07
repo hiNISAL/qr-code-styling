@@ -30,6 +30,7 @@ export interface RequiredOptions extends Options {
     color: string;
     gradient?: Gradient;
   };
+  canvasElement?: HTMLCanvasElement;
 }
 
 const defaultOptions: RequiredOptions = {

@@ -79,7 +79,16 @@ export default class QRCodeStyling {
     this._qr.make();
 
     if (this._options.type === drawTypes.canvas) {
-      this._canvas = new QRCanvas(this._options);
+      this._canvas = new QRCanvas(
+        Object.assign(
+          this._options,
+          this._options.updateAtCreatedCanvas
+            ? {
+                canvasElement: this._canvas?._canvas
+              }
+            : {}
+        )
+      );
       this._canvasDrawingPromise = this._canvas.drawQR(this._qr);
       this._svgDrawingPromise = undefined;
       this._svg = undefined;
