@@ -15,6 +15,30 @@ const qrcodeGenerator = QRCodeStyling.qrcodeGenerator;
 import { qrcode } from 'qr-code-styling-extra';
 ```
 
+### option `updateAtCreatedCanvas`
+
+if given `updateAtCreatedCanvas` be true , when call `update` will not create new `canvas` element.
+
+its mean each update will repaint at one canvas element.
+
+```ts
+import QRCodeStyling from 'qr-code-styling-extra';
+
+const qr = new QRCodeStyling({
+    data: 'a',
+    updateAtCreatedCanvas: true,
+});
+
+const canvas = qr._canvas._canvas;
+
+qr.update({
+    data: 'b',
+});
+
+// true
+canvas === qr._canvas._canvas;
+```
+
 ---
 
 [![Version](https://img.shields.io/npm/v/qr-code-styling.svg)](https://www.npmjs.org/package/qr-code-styling)
