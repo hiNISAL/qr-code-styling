@@ -1,4 +1,22 @@
-# QR Code Styling
+# QR Code Styling Extra
+
+> project based on qr-code-styling@1.5.0
+
+## added features
+
+### export `qrcode-generator`
+
+```ts
+import QRCodeStyling from 'qr-code-styling-extra';
+
+const qrcodeGenerator = QRCodeStyling.qrcodeGenerator;
+
+// same as
+import { qrcode } from 'qr-code-styling-extra';
+```
+
+---
+
 [![Version](https://img.shields.io/npm/v/qr-code-styling.svg)](https://www.npmjs.org/package/qr-code-styling)
 
 I am collecting community thoughts about future development of this library, please take a [small poll](https://docs.google.com/forms/d/e/1FAIpQLScJXv64WJQiCSW2pDmIEyMddsxE9KvY25IW_YnsOFd5FUqJig/viewform?usp=sf_link) to help me.
