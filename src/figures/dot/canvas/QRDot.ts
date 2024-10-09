@@ -474,7 +474,7 @@ export default class QRDot {
       size,
       context,
       radius: 2.5,
-      isDark,
+      isDark
     });
   }
 }
