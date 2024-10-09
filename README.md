@@ -42,11 +42,11 @@ canvas === qr._canvas._canvas;
 ### new dots style
 
 - rhombus
-- thinRhombus
-- thinDots
-- thinSquare
-- squareRounded
-- extraSquareRounded
+- thin-rhombus
+- thin-dots
+- thin-square
+- square-rounded
+- extra-square-rounded
 
 ```ts
 import QRCodeStyling from 'qr-code-styling-extra';
