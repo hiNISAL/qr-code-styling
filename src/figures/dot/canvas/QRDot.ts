@@ -16,7 +16,19 @@ export default class QRDot {
     this._type = type;
   }
 
-  draw(x: number, y: number, size: number, getNeighbor: GetNeighbor): void {
+  draw({
+    x,
+    y,
+    size,
+    getNeighbor,
+    isDark
+  }: {
+    x: number;
+    y: number;
+    size: number;
+    getNeighbor: GetNeighbor;
+    isDark?: boolean;
+  }): void {
     const context = this._context;
     const type = this._type;
     let drawFunction;
@@ -37,12 +49,30 @@ export default class QRDot {
       case dotTypes.extraRounded:
         drawFunction = this._drawExtraRounded;
         break;
+      case dotTypes.rhombus:
+        drawFunction = this._drawRhombus;
+        break;
+      case dotTypes.thinDots:
+        drawFunction = this._drawThinDots;
+        break;
+      case dotTypes.thinRhombus:
+        drawFunction = this._drawThinRhombus;
+        break;
+      case dotTypes.thinSquare:
+        drawFunction = this._drawThinSquare;
+        break;
+      case dotTypes.squareRounded:
+        drawFunction = this._drawSquareRounded;
+        break;
+      case dotTypes.extraSquareRounded:
+        drawFunction = this._drawExtraSquareRounded;
+        break;
       case dotTypes.square:
       default:
         drawFunction = this._drawSquare;
     }
 
-    drawFunction.call(this, { x, y, size, context, getNeighbor });
+    drawFunction.call(this, { x, y, size, context, getNeighbor, isDark });
   }
 
   _rotateFigure({ x, y, size, context, rotation = 0, draw }: RotateFigureArgsCanvas): void {
@@ -152,15 +182,27 @@ export default class QRDot {
     });
   }
 
-  _drawDot({ x, y, size, context }: DrawArgsCanvas): void {
+  _drawDot({ x, y, size, context, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
     this._basicDot({ x, y, size, context, rotation: 0 });
   }
 
-  _drawSquare({ x, y, size, context }: DrawArgsCanvas): void {
+  _drawSquare({ x, y, size, context, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
     this._basicSquare({ x, y, size, context, rotation: 0 });
   }
 
-  _drawRounded({ x, y, size, context, getNeighbor }: DrawArgsCanvas): void {
+  _drawRounded({ x, y, size, context, getNeighbor, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
     const leftNeighbor = getNeighbor ? +getNeighbor(-1, 0) : 0;
     const rightNeighbor = getNeighbor ? +getNeighbor(1, 0) : 0;
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
@@ -209,7 +251,11 @@ export default class QRDot {
     }
   }
 
-  _drawExtraRounded({ x, y, size, context, getNeighbor }: DrawArgsCanvas): void {
+  _drawExtraRounded({ x, y, size, context, getNeighbor, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
     const leftNeighbor = getNeighbor ? +getNeighbor(-1, 0) : 0;
     const rightNeighbor = getNeighbor ? +getNeighbor(1, 0) : 0;
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
@@ -258,7 +304,11 @@ export default class QRDot {
     }
   }
 
-  _drawClassy({ x, y, size, context, getNeighbor }: DrawArgsCanvas): void {
+  _drawClassy({ x, y, size, context, getNeighbor, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
     const leftNeighbor = getNeighbor ? +getNeighbor(-1, 0) : 0;
     const rightNeighbor = getNeighbor ? +getNeighbor(1, 0) : 0;
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
@@ -284,7 +334,11 @@ export default class QRDot {
     this._basicSquare({ x, y, size, context, rotation: 0 });
   }
 
-  _drawClassyRounded({ x, y, size, context, getNeighbor }: DrawArgsCanvas): void {
+  _drawClassyRounded({ x, y, size, context, getNeighbor, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
     const leftNeighbor = getNeighbor ? +getNeighbor(-1, 0) : 0;
     const rightNeighbor = getNeighbor ? +getNeighbor(1, 0) : 0;
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
@@ -308,5 +362,119 @@ export default class QRDot {
     }
 
     this._basicSquare({ x, y, size, context, rotation: 0 });
+  }
+
+  _drawRhombus({ x, y, size, context, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
+    this._rotateFigure({
+      x,
+      y,
+      size,
+      context,
+      draw: () => {
+        context.moveTo(0, -size / 2);
+        context.lineTo(size / 2, 0);
+        context.lineTo(0, size / 2);
+        context.lineTo(-size / 2, 0);
+      }
+    });
+  }
+
+  _drawThinDots({ x, y, size, context, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
+    this._rotateFigure({
+      x,
+      y,
+      size,
+      context,
+      draw: () => {
+        context.arc(0, 0, size / 2.5, 0, Math.PI * 2);
+      }
+    });
+  }
+
+  _drawThinRhombus({ x, y, size, context, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
+    const ratio = size / 2.5;
+
+    this._rotateFigure({
+      x,
+      y,
+      size,
+      context,
+      draw: () => {
+        context.moveTo(0, -ratio);
+        context.lineTo(ratio, 0);
+        context.lineTo(0, ratio);
+        context.lineTo(-ratio, 0);
+      }
+    });
+  }
+
+  _drawThinSquare({ x, y, size, context, isDark }: DrawArgsCanvas): void {
+    if (!isDark) {
+      return;
+    }
+
+    const ratio = size / 4;
+
+    this._rotateFigure({
+      x,
+      y,
+      size,
+      context,
+      draw: () => {
+        context.rect(-ratio, -ratio, ratio * 2, ratio * 2);
+      }
+    });
+  }
+
+  _drawSquareRounded({ x, y, size, context, radius: _radius = 4, isDark }: DrawArgsCanvas & { radius: number }): void {
+    if (!isDark) {
+      return;
+    }
+
+    this._rotateFigure({
+      x,
+      y,
+      size,
+      context,
+      draw: () => {
+        // rect with 4 radiuses
+        // draw rounded rectangle
+        const radius = size / _radius;
+        const halfSize = size / 2.3;
+
+        context.moveTo(-halfSize + radius, -halfSize);
+        context.lineTo(halfSize - radius, -halfSize);
+        context.arc(halfSize - radius, -halfSize + radius, radius, -Math.PI / 2, 0);
+        context.lineTo(halfSize, halfSize - radius);
+        context.arc(halfSize - radius, halfSize - radius, radius, 0, Math.PI / 2);
+        context.lineTo(-halfSize + radius, halfSize);
+        context.arc(-halfSize + radius, halfSize - radius, radius, Math.PI / 2, Math.PI);
+        context.lineTo(-halfSize, -halfSize + radius);
+        context.arc(-halfSize + radius, -halfSize + radius, radius, Math.PI, -Math.PI / 2);
+      }
+    });
+  }
+
+  _drawExtraSquareRounded({ x, y, size, context, isDark }: DrawArgsCanvas): void {
+    this._drawSquareRounded({
+      x,
+      y,
+      size,
+      context,
+      radius: 2.5,
+      isDark,
+    });
   }
 }

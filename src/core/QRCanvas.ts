@@ -188,19 +188,20 @@ export default class QRCanvas {
         if (filter && !filter(i, j)) {
           continue;
         }
-        if (!this._qr.isDark(i, j)) {
-          continue;
-        }
-        dot.draw(
-          xBeginning + i * dotSize,
-          yBeginning + j * dotSize,
-          dotSize,
-          (xOffset: number, yOffset: number): boolean => {
+        // if (!this._qr.isDark(i, j)) {
+        //   continue;
+        // }
+        dot.draw({
+          x: xBeginning + i * dotSize,
+          y: yBeginning + j * dotSize,
+          size: dotSize,
+          getNeighbor: (xOffset: number, yOffset: number): boolean => {
             if (i + xOffset < 0 || j + yOffset < 0 || i + xOffset >= count || j + yOffset >= count) return false;
             if (filter && !filter(i + xOffset, j + yOffset)) return false;
             return !!this._qr && this._qr.isDark(i + xOffset, j + yOffset);
-          }
-        );
+          },
+          isDark: this._qr.isDark(i, j)
+        });
       }
     }
 
@@ -276,12 +277,12 @@ export default class QRCanvas {
               continue;
             }
 
-            dot.draw(
-              x + i * dotSize,
-              y + j * dotSize,
-              dotSize,
-              (xOffset: number, yOffset: number): boolean => !!squareMask[i + xOffset]?.[j + yOffset]
-            );
+            dot.draw({
+              x: x + i * dotSize,
+              y: y + j * dotSize,
+              size: dotSize,
+              getNeighbor: (xOffset: number, yOffset: number): boolean => !!squareMask[i + xOffset]?.[j + yOffset]
+            });
           }
         }
       }
@@ -324,12 +325,12 @@ export default class QRCanvas {
               continue;
             }
 
-            dot.draw(
-              x + i * dotSize,
-              y + j * dotSize,
-              dotSize,
-              (xOffset: number, yOffset: number): boolean => !!dotMask[i + xOffset]?.[j + yOffset]
-            );
+            dot.draw({
+              x: x + i * dotSize,
+              y: y + j * dotSize,
+              size: dotSize,
+              getNeighbor: (xOffset: number, yOffset: number): boolean => !!dotMask[i + xOffset]?.[j + yOffset]
+            });
           }
         }
       }

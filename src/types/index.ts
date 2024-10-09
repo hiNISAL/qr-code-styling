@@ -3,7 +3,19 @@ export interface UnknownObject {
   [key: string]: any;
 }
 
-export type DotType = "dots" | "rounded" | "classy" | "classy-rounded" | "square" | "extra-rounded";
+export type DotType =
+  | "dots"
+  | "rounded"
+  | "classy"
+  | "classy-rounded"
+  | "square"
+  | "extra-rounded"
+  | "rhombus"
+  | "thin-rhombus"
+  | "thin-dots"
+  | "thin-square"
+  | "square-rounded"
+  | "extra-square-rounded";
 export type CornerDotType = "dot" | "square";
 export type CornerSquareType = "dot" | "square" | "extra-rounded";
 export type Extension = "svg" | "png" | "jpeg" | "webp";
@@ -136,6 +148,7 @@ export type Options = {
   nodeCanvas?: Canvas;
   jsdom?: typeof JSDom;
   updateAtCreatedCanvas?: boolean;
+  canvas?: HTMLCanvasElement;
   qrOptions?: {
     typeNumber?: TypeNumber;
     mode?: Mode;
@@ -182,6 +195,7 @@ export type DrawArgs = {
   size: number;
   rotation?: number;
   getNeighbor?: GetNeighbor;
+  isDark?: boolean;
 };
 
 export type BasicFigureDrawArgs = {
@@ -189,6 +203,7 @@ export type BasicFigureDrawArgs = {
   y: number;
   size: number;
   rotation?: number;
+  isDark?: boolean;
 };
 
 export type RotateFigureArgs = {
