@@ -39,6 +39,26 @@ qr.update({
 canvas === qr._canvas._canvas;
 ```
 
+### new dots style
+
+- rhombus
+- thinRhombus
+- thinDots
+- thinSquare
+- squareRounded
+- extraSquareRounded
+
+```ts
+import QRCodeStyling from 'qr-code-styling-extra';
+
+const qr = new QRCodeStyling({
+    data: 'abc',
+    dotsOptions: {
+        type: 'extra-square-rounded',
+    },
+});
+```
+
 ---
 
 [![Version](https://img.shields.io/npm/v/qr-code-styling.svg)](https://www.npmjs.org/package/qr-code-styling)
