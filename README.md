@@ -41,6 +41,8 @@ canvas === qr._canvas._canvas;
 
 ### new dots style
 
+**only work with `canvas`**
+
 - rhombus
 - thin-rhombus
 - thin-dots
