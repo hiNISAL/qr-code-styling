@@ -183,7 +183,7 @@ export default class QRDot {
   }
 
   _drawDot({ x, y, size, context, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -191,7 +191,7 @@ export default class QRDot {
   }
 
   _drawSquare({ x, y, size, context, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -199,7 +199,7 @@ export default class QRDot {
   }
 
   _drawRounded({ x, y, size, context, getNeighbor, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -252,7 +252,7 @@ export default class QRDot {
   }
 
   _drawExtraRounded({ x, y, size, context, getNeighbor, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -305,7 +305,7 @@ export default class QRDot {
   }
 
   _drawClassy({ x, y, size, context, getNeighbor, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -335,7 +335,7 @@ export default class QRDot {
   }
 
   _drawClassyRounded({ x, y, size, context, getNeighbor, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -365,7 +365,7 @@ export default class QRDot {
   }
 
   _drawRhombus({ x, y, size, context, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -384,7 +384,7 @@ export default class QRDot {
   }
 
   _drawThinDots({ x, y, size, context, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -400,7 +400,7 @@ export default class QRDot {
   }
 
   _drawThinRhombus({ x, y, size, context, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -421,7 +421,7 @@ export default class QRDot {
   }
 
   _drawThinSquare({ x, y, size, context, isDark }: DrawArgsCanvas): void {
-    if (!isDark) {
+    if (isDark === false) {
       return;
     }
 
@@ -438,8 +438,8 @@ export default class QRDot {
     });
   }
 
-  _drawSquareRounded({ x, y, size, context, radius: _radius = 4, isDark }: DrawArgsCanvas & { radius: number }): void {
-    if (!isDark) {
+  _drawSquareRounded({ x, y, size, context, radius: _radius = 4, isDark }: DrawArgsCanvas & { radius?: number }): void {
+    if (isDark === false) {
       return;
     }
 
