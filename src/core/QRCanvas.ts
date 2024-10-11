@@ -38,7 +38,7 @@ export default class QRCanvas {
     if (options.nodeCanvas?.createCanvas) {
       this._canvas = options.nodeCanvas.createCanvas(options.width, options.height);
     } else {
-      this._canvas = options.canvasElement || document.createElement("canvas");
+      this._canvas = options.canvas || document.createElement("canvas");
     }
     this._canvas.width = options.width;
     this._canvas.height = options.height;
