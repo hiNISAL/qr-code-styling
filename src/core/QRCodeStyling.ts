@@ -84,7 +84,7 @@ export default class QRCodeStyling {
           this._options,
           this._options.updateAtCreatedCanvas
             ? {
-                canvasElement: this._options.canvasElement ?? this._canvas?._canvas
+                canvasElement: this._options.canvas ?? this._canvas?._canvas
               }
             : {}
         )
