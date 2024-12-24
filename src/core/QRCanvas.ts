@@ -71,6 +71,13 @@ export default class QRCanvas {
 
   async drawQR(qr: QRCode): Promise<void> {
     const count = qr.getModuleCount();
+
+    if (this._options.marginDotSize) {
+      const chunkSize = count + this._options.marginDotSize;
+
+      this._options.margin = Math.floor(this._options.width / chunkSize) * this._options.marginDotSize;
+    }
+
     const minSize = Math.min(this._options.width, this._options.height) - this._options.margin * 2;
     const dotSize = Math.floor(minSize / count);
     let drawImageSize = {

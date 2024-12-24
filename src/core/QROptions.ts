@@ -8,6 +8,7 @@ export interface RequiredOptions extends Options {
   width: number;
   height: number;
   margin: number;
+  marginDotSize?: number;
   data: string;
   qrOptions: {
     typeNumber: TypeNumber;

@@ -61,6 +61,20 @@ const qr = new QRCodeStyling({
 });
 ```
 
+### option `marginDotSize`
+
+if given `marginDotSize` be number, it will add margin dot size to the QR code.
+
+```ts
+import QRCodeStyling from 'qr-code-styling-extra';
+
+const qr = new QRCodeStyling({
+    data: 'abc',
+    // 2 dots size to margin
+    marginDotSize: 2,
+});
+```
+
 ---
 
 [![Version](https://img.shields.io/npm/v/qr-code-styling.svg)](https://www.npmjs.org/package/qr-code-styling)

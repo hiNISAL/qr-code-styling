@@ -3,14 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <title>QR Code Styling</title>
+
+        <style>
+          canvas {
+            width: 300px;
+            height: 300px;
+          }
+
+          body {
+            background-color: #00f;
+          }
+        </style>
     </head>
     <body>
         <canvas id="canvas"></canvas>
         <div id="canvas2"></div>
         <script type="text/javascript">
             const qr = new QRCodeStyling({
-              data: '123',
-              canvasElement: document.getElementById('canvas'),
+              data: '1231',
+              // canvasElement: document.getElementById('canvas'),
               updateAtCreatedCanvas: true,
               dotsOptions: {
                 type: 'extra-square-rounded',
@@ -21,7 +32,12 @@
               cornersDotOptions: {
                 type: 'square',
               },
+              marginDotSize: 1,
             });
+
+            qr.append(document.getElementById("canvas2"));
+
+            console.log(qr);
         </script>
     </body>
 </html>
