@@ -148,6 +148,7 @@ export type Options = {
   nodeCanvas?: Canvas;
   jsdom?: typeof JSDom;
   updateAtCreatedCanvas?: boolean;
+  marginDotSize?: number;
   canvas?: HTMLCanvasElement;
   qrOptions?: {
     typeNumber?: TypeNumber;
